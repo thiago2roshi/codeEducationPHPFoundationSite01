@@ -1,4 +1,4 @@
-</div><!-- /container -->
+    </div><!-- /container -->
 
 <div class="navbar navbar-inner navbar-fixed-bottom">
     <?php
