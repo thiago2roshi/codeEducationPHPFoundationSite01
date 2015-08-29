@@ -4,8 +4,7 @@ $email     = $_POST['email'];
 $descricao = $_POST['descricao'];
 
 echo "
-        <h1>Dados enviados com sucesso</h1><br>
-        <h3>agora é esperar que seja respondido, como se realmente fosse.</h3>
+        <h1>Dados enviados com sucesso, abaixo seguem os dados que você enviou</h1><br>
      ";
 echo "
         <p>
