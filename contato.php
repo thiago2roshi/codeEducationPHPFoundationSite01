@@ -12,6 +12,6 @@ Para falar conosco, so preencher o formulario, mas não vou dar certeza de respo
         <label class = "textfield">Descricao: </label>
         <input class = "input-xlarge" name = "descricao" type = "text" placeholder  = "Em que posso ajudar?">
     </p><p>
-        <input class = "btn" name = "enviar" type = "submit" value = "enviar">
+        <input class = "btn btn-block" name = "enviar" type = "submit" value = "enviar">
     </p>
 </form>
