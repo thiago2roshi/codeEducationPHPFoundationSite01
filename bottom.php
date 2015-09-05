@@ -2,7 +2,7 @@
 
 <div class="navbar navbar-inner navbar-fixed-bottom">
     <?php
-        $ano = date(Y);
+        $ano = date('Y');
         echo "<p>Todos os Direitos reservados - " . $ano . "</p>";
      ?>
 </div>
