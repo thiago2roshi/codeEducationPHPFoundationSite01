@@ -26,11 +26,11 @@
             <a class="brand" href="#">CodeEducation PhpFoundation 1.0</a>
             <div class="nav-collapse collapse">
                 <ul class='nav'>
-                    <li><a href ="?arquivo=home.php">home</a></li>
-                    <li><a href ="?arquivo=empresa.php">Empresa</a></li>
-                    <li><a href ="?arquivo=produtos.php">Produtos</a></li>
-                    <li><a href ="?arquivo=servicos.php">Serviços</a></li>
-                    <li><a href ="?arquivo=contato.php">contato</a></li>
+                    <li><a href ="home">home</a></li>
+                    <li><a href ="empresa">Empresa</a></li>
+                    <li><a href ="produtos">Produtos</a></li>
+                    <li><a href ="servicos">Serviços</a></li>
+                    <li><a href ="contato">contato</a></li>
                 </ul>
             </div><!--./nav-collase-->
         </div>
