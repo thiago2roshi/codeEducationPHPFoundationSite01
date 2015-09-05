@@ -10,7 +10,6 @@ else
     require_once 'ops.php';
 }
 
-
 require_once 'bottom.php';
 
 ?>
