@@ -4,9 +4,12 @@
 /**
  * @author Thiago Souza Santos aka. ThiagoRoshi <ads.thiagosouza@gmail.com>
  */
+
+namespace SON;
+
 interface ConexaoInterface
 {
-	public function conect();
+	public function connect();
 }
 
 ?>
