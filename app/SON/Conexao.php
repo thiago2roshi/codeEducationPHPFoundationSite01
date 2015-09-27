@@ -1,7 +1,7 @@
 <?php
 
 namespace SON;
-require_once "ConexaoInterface.php";
+require_once("ConexaoInterface.php");
 
 /**
  * [clase de conexão com o bando de dados]

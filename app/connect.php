@@ -1,7 +1,7 @@
 <?php
 
-require_once '../app/SON/Conexao.php';
-require_once '../app/config.php';
+require_once('../app/SON/Conexao.php');
+require_once('../app/config.php');
 
 $db = new \SON\Conexao($config['sgdb'], $config['host'], $config['db'], $config['user'], $config['pass']);
 
