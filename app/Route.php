@@ -1,7 +1,21 @@
 <?php
+/**
+ * classe para o Routeamento de paginas nas URLS
+ *
+ * @author Thiago Souza Santos aka. ThiagoRoshi <ads.thiagosouza@gmail.com>
+ *
+ */
+
+namespace SON;
+require_once("__DIR__/../app/SON/Pages.php");
+
 
 class Route
 {
+    private $rota;
+    private $path;
+    private $page;
+
     public function captureRoute()
     {
         $rota = parse_url('http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
@@ -18,7 +32,9 @@ class Route
         //redirecionamento para a home
         if ($path[1] == "" || $path == null)
         {
-            require_once('../app/view/home.php');
+            // require_once('../app/view/home.php');
+            $page = new \SON\Pages('home');
+            return $page->verPagina();
         }
 
         //error_handler para parametro invalido
