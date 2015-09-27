@@ -1,7 +1,7 @@
 <?php
 
-require_once './SON/Conexao.php';
-require_once 'config.php';
+require_once '../app/SON/Conexao.php';
+require_once '../app/config.php';
 
 $db = new \SON\Conexao($config['sgdb'], $config['host'], $config['db'], $config['user'], $config['pass']);
 
@@ -16,8 +16,6 @@ try
 $query     = "SELECT * FROM clientes";
 $stmt      = $conecta->prepare($query);
 $stmt->execute();
-$resultado = $stmt->fetchAll();
-
-print_r ($resultado);
+$clientes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
