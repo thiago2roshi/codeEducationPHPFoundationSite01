@@ -1,7 +1,7 @@
 <?php
 
-require_once '../SON/Conexao.php';
-require_once '../config.php';
+require_once('__DIR__/../app/SON/Conexao.php');
+require_once("__DIR__/../app/config.php");
 
 echo "
 ///////////////////////////
@@ -27,13 +27,14 @@ $conn->query(
 echo " - OK\n";
 echo "inserindo dados em table=>teste";
 
-for ($i=0; $i < 10 ; $i++) {
+for ($i=0; $i < 10 ; $i++)
+{
     $title   = "title{$i}";
     $content = "texto da pagina{$i}";
 
 
     $stm = $conn->prepare("INSERT INTO pages (title,content) VALUES (:title, :content);");
-    $stm->bindParam(":text", $text);
+    $stm->bindParam(":title", $title);
     $stm->bindParam(":content", $content);
     $stm->execute();
 }
