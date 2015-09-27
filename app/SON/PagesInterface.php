@@ -9,9 +9,9 @@ namespace SON;
 
 interface PagesInterface
 {
-	public function verPages();
-    public function gerarPages();
-    
+	public function gerarPagina();
+    public function verPagina();
+
 }
 
 ?>
