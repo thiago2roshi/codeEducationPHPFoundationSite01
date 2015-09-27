@@ -2,6 +2,7 @@
 
 require_once '../SON/Conexao.php';
 require_once '../config.php';
+
 echo "
 /**********************
  *  Iniciando Fixture *
