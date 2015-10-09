@@ -1,0 +1,15 @@
+{
+    "name": "thiago/php-foundation",
+    "authors": [
+        {
+            "name": "Thiago'roshi' Souza",
+            "email": "mutenroshi930@gmail.com"
+        }
+    ],
+
+    "autoload": {
+        "psr-0": {
+            "SON": "app/SON/"
+        }
+    }
+}
