@@ -1,19 +1,18 @@
 {
-    "name": "thiago/php-foundation",
+    "name": "thiagoroshi/code.education_php.foundation",
+    "description": "projeto de conclusão de curso da codeEducation",
+    "type": "php",
     "authors": [
         {
-            "name": "Thiago'roshi' Souza",
-            "email": "mutenroshi930@gmail.com"
+            "name": "thiagoroshi",
+            "email": "ads.thiagosouza@gmail.com"
         }
     ],
+    "minimum-stability": "dev",
 
-    "autoload": {
-        "psr-0": {
-            "SON": "app/SON/"
+        "autoload": {
+            "psr-4": {
+                "SON\\": "SON/"
+            }
         }
-    },
-
-    "require": {
-        "php": ">=5.4"
-    }
 }
