@@ -1,2 +1,7 @@
 test/
 TODO_PROJECT.MD
+/vendor/
+composer.phar
+ngixn.conf
+nginx01.conf
+php-fpm.ini
