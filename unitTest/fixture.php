@@ -1,7 +1,8 @@
 <?php
 
-require_once("../SON/Conexao.php");
-require_once("../config.php");
+// require_once("../SON/Conexao.php");
+// require_once("../config.php");
+require_once( __DIR__ .'/..'. '/vendor' . '/autoload.php');
 
 echo "
 /**********************
