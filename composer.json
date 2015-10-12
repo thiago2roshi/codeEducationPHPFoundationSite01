@@ -2,17 +2,24 @@
     "name": "thiagoroshi/code.education_php.foundation",
     "description": "projeto de conclusão de curso da codeEducation",
     "type": "php",
+    "license": "MIT",
     "authors": [
         {
             "name": "thiagoroshi",
             "email": "ads.thiagosouza@gmail.com"
         }
     ],
-    "minimum-stability": "dev",
-
-        "autoload": {
-            "psr-4": {
-                "SON\\": "SON/"
-            }
+    "config": {
+        "cache-max-size": "300MiB"
+    },
+    "prefer-stable": true,
+    "autoload": {
+        "classmap": ["app/"],
+        "psr-4": {
+            "app\\": "app/"
+        },
+        "psr-0":{
+            "app": "app/"
         }
+    }
 }

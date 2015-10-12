@@ -1,11 +1,14 @@
 <?php
-// require_once('view/top.php');
-// require_once('../app/Route.php');
-require_once(__DIR__ . '/vendor/autoload.php');
-// $loader = require __DIR__ . '/vendor/autoload.php';
-// $loader->add()
-use \SON\Route;
-$rota = new \SON\Route();
+require 'vendor/autoload.php';
+use app\Route;
+
+require_once('view/top.php');
+require_once('view/template_basic.php');
+
+$rota = new Route();
 $path = $rota->validateRoute();
+
+$page = templateBasic($path['title'], $path['content']);
+
 
 require_once('view/bottom.php');
