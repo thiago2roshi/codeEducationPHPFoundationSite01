@@ -15,16 +15,12 @@
 <body>
 <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="navbar-inner">
-        <div class="container">
+        <div class="container-fluid">
             <a class='btn btn-navbar' data-target='.nav-collapse' data-toggle='collapse'>
-                <span class="icon-bar"> </span>
-                <span class="icon-bar"> </span>
-                <span class="icon-bar"> </span>
-                <span class="icon-bar"> </span>
                 <span class="icon-bar"> </span>
             </a>
             <a class="brand" href="#">CodeEducation PhpFoundation 1.0</a>
-            <div class="nav-collapse collapse">
+            <div class="nav nav-bar nav-collapse collapse">
                 <ul class='nav'>
                     <li><a href ="home">home</a></li>
                     <li><a href ="empresa">Empresa</a></li>
