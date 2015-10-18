@@ -26,14 +26,11 @@ class Pages
     /* @method captura as paginas do DB
      * @return [type] retorna a pagina requisitada
      */
-
-    public function verPagina($title)
+    public function __construct()
     {
-        $this->title = filter_var($title, FILTER_SANITIZE_STRING);
-
         $database = array(
             'sgdb' => 'mysql',
-            'host' => '172.17.0.8',
+            'host' => '172.17.0.2',
             'db'   => 'php-foundation',
             'user' => 'thiago',
             'pass' => 'roshi1903'
@@ -45,9 +42,19 @@ class Pages
             $database['user'],
             $database['pass']
         );
-        $conn = $db->get();
+        $conn       = $db->get();
+        $this->conn = $conn;
+    }
+    public function procuraPagina($termo)
+    {
+        $this->termo = filter_var($termo, FILTER_SANITIZE_STRING);
 
-        $stm = $conn->prepare("SELECT * FROM pages WHERE title=:title LIMIT 1");
+    }
+    public function verPagina($title)
+    {
+        $this->title = filter_var($title, FILTER_SANITIZE_STRING);
+
+        $stm = $this->conn->prepare("SELECT * FROM pages WHERE title=:title LIMIT 1");
         $stm->bindParam(":title", $this->title);
 
         try{
@@ -63,10 +70,10 @@ class Pages
         // $page = $stm->fetchAll();
         $conn = null;
 
-        if ($page !== null) {
+        if ($page['title'] !== null) {
             return $page;
         }else {
-            return "pagina não encontrada";
+            return $page = null;
         }
 
     }

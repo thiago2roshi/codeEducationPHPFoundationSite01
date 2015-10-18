@@ -30,14 +30,13 @@ class Route
 
     public function validateRoute()
     {
-        // $path = $this->path;
         $rota = Route::captureRoute();
         $page = new Pages();
         //redirecionamento para a home
-        if ($rota !== null){
+        if ($rota != null){
             return $page->verPagina($rota);
         }else{
-            return $page->verPagina('home');
+            return $page->verPagina("home");
         }
     }
 }
