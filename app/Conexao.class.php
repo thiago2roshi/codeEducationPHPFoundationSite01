@@ -1,41 +1,175 @@
 <?php
 /**
  * [clase de conexão com o bando de dados]
- * @author Thiago Souza Santos aka. ThiagoRoshi <ads.thiagosouza@gmail.com>
+ * @author Thiago Souza Santos <ads.thiagosouza@gmail.com> @ThiagoRoshi
+ * @greeters Gregory Monteiro pelo auxilio com a abstração da conexão com o DB <linhadecodigo.com.br>
  */
 
 namespace app;
+
 require_once(__DIR__ .'/..'. '/vendor' . '/autoload.php');
+
 use \PDO;
 
-class Conexao
+abstract class Conexao
 {
-    private static $conn = null;
     /**
-     * statement da conexao com o bando de dados
-     * @return objeto conexao com o bando
+     * construtor da conexão
      */
-    public function __construct($sgdb, $host, $dbname, $user, $pass)
-    {
-        $this->sgdb   = $sgdb;
-        $this->host   = $host;
-        $this->dbname = $dbname;
-        $this->user   = $user;
-        $this->pass   = $pass;
+    // private function __construct($sgdb, $host, $port, $db, $user, $pass){}
+    private function __construct(){}
+    /**
+     * Evitar que função sega clonada
+     */
+    private function __clone(){}
 
-        try{
-            self::$conn = new PDO("{$this->sgdb}:host={$this->host};dbname={$this->dbname};charset=utf8", $this->user, $this->pass);
-        }catch (Exception $e){
-            die('Erro Codigo: ' . $e->getCode() . ': ' . $e->getMessage() . '\n' . $e->getTraceAsString() . '\n');
+    /**
+     * destruir conexão ao remover instancia do DB
+     * 			e libera a memoria usada
+     * @return null
+     */
+    public function __destruction()
+    {
+        $this->disconnect();
+        foreach ($this as $key => $value) {
+            unset($this->key);
         }
     }
-	public static function get()
+    /**
+     * Variaveis
+     * @var [type]
+     */
+    private static $sgdb = "mysql"; // @var String Banco de dados
+    private static $host = "172.17.0.6"; // @var String endereco do host
+    private static $port = "3306"; // @var String porta de escuta do SGDB
+    private static $user = "thiago"; // @var String userID do DB
+    private static $pass = "roshi1903"; // @var String senha do DB
+    private static $db   = "php-foundation";   // @var String DB usado
+
+    /**
+     * Definindo Getters
+     * @return = variavel solicitada
+     */
+    private function getDBType() {return self::$sgdb;}
+    private function getHost()   {return self::$host;}
+    private function getPort()   {return self::$port;}
+    private function getUser()   {return self::$user;}
+    private function getPwd()    {return self::$pass;}
+    private function getDB()     {return self::$db;}
+
+    /**
+     * Conexao com o banco de dados
+     *
+     * @return statement variavel com a conexao com o DB
+     */
+    private function connect()
     {
-        if(self::$conn !== null){
-            return self::$conn;
-        }else {
-            die('conexão vazia');
+        try{
+            $this->conexao = new PDO("{$this->getDBType()}:host={$this->getHost()};port={$this->getPort()};dbname={$this->getDB()};charset=utf8", $this->getUser(), $this->getPwd());
+
+        }catch (\PDOException $e){
+            die(
+                'Erro Codigo: <code>' . $e->getCode()          . "</code></br>" .
+                'Descricao  : <code>' . $e->getMessage()       . "</code></br>" .
+                'Trace      : <code>' . $e->getTraceAsString() . "</code></br>"
+               );
+
         }
+
+        return ($this->conexao);
+    }
+
+    /**
+     * desconectando banco de dados
+     * @return null apaga conexao com DB
+     */
+    private function disconnect()
+    {
+        $this->conexao = null;
+    }
+
+    // ============== //
+    // Iniciando CRUD //
+    // ============== //
+
+/**
+ * função para os SELECTs do DB
+ * @param  String $sql   => query enviada para o Select
+ * @param  String $param => Parametro adicional   - se não declada = NULL
+ * @param  String $class => Classe para ser usada - se não declada = NULL
+ * @return VO-Array      => Resultado da query em VO ou Array
+ */
+    // public function selectDB($sql, $params = null, $class = null)
+    public function selectDB($sql, $params = null)
+    {
+        $conexao = $this->connect();
+        $query   = $conexao->prepare($sql);
+        $query->execute($params);
+
+        // if(isset($class)){
+            // $result = $query->fetchAll(PDO::FETCH_CLASS, $class) or die(print_r($query->errorInfo(), true));
+        // } else {
+            // $result = $query->fetchAll(PDO::FETCH_OBJ)           or die(print_r($query->errorInfo(), true));
+        // }
+        $result = $query->fetchAll(PDO::FETCH_ASSOC) or die(print_r($query->errorInfo(), true));
+
+        self::__destruction();
+        return $result;
+    }
+
+
+    /**
+     * funcao para inserir dados no DB
+     * @param  String $sql   => query enviada para o insert
+     * @param  String $param => Parametro adicional - se não declada = NULL
+     * @return String        => Resultado da Query  - exibe o ultimo ID inserido
+     */
+    public function insertDB($sql, $params = null)
+    {
+        $conexao = $this->connect();
+        $query   = $conexao->prepare($sql);
+        $query->execute($params);
+
+        $result = $conexao->lastInserId() or die(print_r($query->errorInfo(), true));
+
+        self::__destruction();
+        return $result;
+    }
+
+    /**
+     * funcao para atualizar os dados do DB
+     * @param  String $sql   => query enviada para o UPDATE
+     * @param  String $param => Parametro adicional - se não declada = NULL
+     * @return String        => Resultado da Query  - exibe linhas afetadas
+     */
+    public function updateDB($query, $params= null)
+    {
+        $conexao = $this->connect();
+        $query = $conexao->prepare($sql);
+        $query = $query->execute($params);
+
+        $result = $conexao->rowCount() or die(print_r($query->errorInfo(), true));
+
+        self::__destruction();
+        return $result;
+    }
+
+    /**
+     * funcao para remover os dados do DB
+     * @param  String $sql   => query enviada para o UPDATE
+     * @param  String $param => Parametro adicional - se não declada = NULL
+     * @return String        => Resultado da Query  - exibe linhas afetadas
+     */
+    public function deleteDB($sql,$params = null)
+    {
+        $conexao = $this->connect();
+        $query = $conexao->prepare($sql);
+        $query = $query->execute();
+
+        $result = $conexao->rowCount() or die(print_r($query->errorInfo(), true));
+
+        self::__destruction();
+        return $result;
 
     }
 
