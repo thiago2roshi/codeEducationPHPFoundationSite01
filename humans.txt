@@ -1,0 +1,18 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    <name> -- <role> -- <twitter>
+    Thiago Souza -- FullStack -- @thiagoroshi
+
+# THANKS
+
+    me, and me to.
+
+# TECHNOLOGY COLOPHON
+
+    HTML5, CSS3
+    jQuery, Modernizr
+    Twitter BootStrap,
+    Nginx, PHP-FPM
