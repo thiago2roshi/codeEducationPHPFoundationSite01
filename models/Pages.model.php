@@ -4,7 +4,23 @@
 * Value Object para as Paginas do site
 *       resgatadas via select da classe DB
 * 
-*@ 
+* @example como seria usado a classe
+* $sql = "SELECT * FROM usuarios";
+* 
+* $query=$conexao->prepare($sql);
+* $query->execute();
+* $rs = $query->fetchAll(PDO::FETCH_CLASS,"usuariosVO") or die(print_r($query->errorInfo(), true));
+*
+* foreach ($rs as $key => $row){
+*    //usando os métodos get da classe usuariosVO
+*    
+*    echo $row->getId() . "<br>\n";
+*    echo $row->getNome() . "<br>\n";
+*    echo $row->getLogin() . "<br>\n";
+*    echo $row->getSenha() . "<br><br>\n\n";
+*}
+*Read more: http://www.linhadecodigo.com.br/artigo/3476/mapeamento-objeto-relacional-vo-em-php.aspx#ixzz3qXXBhN1f
+
 **/
   
 class PagesVO
