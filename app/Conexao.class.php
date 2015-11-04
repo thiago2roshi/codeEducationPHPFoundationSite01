@@ -17,7 +17,7 @@ abstract class Conexao
      * construtor da conexão
      */
     // private function __construct($sgdb, $host, $port, $db, $user, $pass){}
-    private function __construct(){}
+    public function __construct(){}
     /**
      * Evitar que função sega clonada
      */
@@ -106,12 +106,12 @@ abstract class Conexao
         $query   = $conexao->prepare($sql);
         $query->execute($params);
 
-        // if(isset($class)){
-            // $result = $query->fetchAll(PDO::FETCH_CLASS, $class) or die(print_r($query->errorInfo(), true));
-        // } else {
-            // $result = $query->fetchAll(PDO::FETCH_OBJ)           or die(print_r($query->errorInfo(), true));
-        // }
-        $result = $query->fetchAll(PDO::FETCH_ASSOC) or die(print_r($query->errorInfo(), true));
+         if(isset($class)){
+             $result = $query->fetchAll(PDO::FETCH_CLASS, $class) or die(print_r($query->errorInfo(), true));
+         }else {
+             $result = $query->fetchAll(PDO::FETCH_OBJ)           or die(print_r($query->errorInfo(), true));
+         }
+        //$result = $query->fetchAll(PDO::FETCH_ASSOC) or die(print_r($query->errorInfo(), true));
 
         self::__destruction();
         return $result;
@@ -172,5 +172,4 @@ abstract class Conexao
         return $result;
 
     }
-
 }
