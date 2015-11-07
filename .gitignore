@@ -6,3 +6,4 @@ composer.phar
 nginx01.conf
 php-fpm.ini
 php-fpm.ini~
+composerUpdate.sh
