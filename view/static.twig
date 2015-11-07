@@ -1,0 +1,22 @@
+{% extends "base.twig" %}
+
+{% block head %}
+{% endblock %}
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block content %}
+    <h1>{{ title }}</h1>
+    <p>
+        {{ content }}
+    </p>
+{% endblock %}
+
+{% block footer %}
+    <div class='row pull-right'>
+        <span class='color'>
+            Todos os Direitos reservados - {{ "now"|date('Y') }}
+        </span>
+    </div>
+{% endblock %}
