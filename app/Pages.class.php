@@ -10,72 +10,45 @@
 namespace app;
 
 use \app\Conexao;
-use \PDO;
+use \model\PagesVO;
 
 require_once( __DIR__ .'/..'.'/vendor'.'/autoload.php');
 
-class Pages
+class Pages extends Conexao
 {
-    private static $database;
     private $title;
     private $content;
-    private $db;
-    private $conn;
     private $stm;
     private $page;
+    private $query;
     /* @method captura as paginas do DB
      * @return [type] retorna a pagina requisitada
      */
-    public function __construct()
+    public function __construct(){}
+    private function __clone(){}
+    public function __destruction()
     {
-        $database = array(
-            'sgdb' => 'mysql',
-            'host' => '172.17.0.2',
-            'db'   => 'php-foundation',
-            'user' => 'thiago',
-            'pass' => 'roshi1903'
-        );
-        $db = new Conexao(
-            $database['sgdb'],
-            $database['host'],
-            $database['db'],
-            $database['user'],
-            $database['pass']
-        );
-        $conn       = $db->get();
-        $this->conn = $conn;
+        foreach ($this as $key => $row) {
+            unset($this->key);
+        }
     }
-    public function procuraPagina($termo)
+    public function procuraPagina($request)
     {
-        $this->termo = filter_var($termo, FILTER_SANITIZE_STRING);
+        $this->request = filter_var($request, FILTER_SANITIZE_STRING);
 
     }
-    public function verPagina($title)
+    public function verPagina($request)
     {
-        $this->title = filter_var($title, FILTER_SANITIZE_STRING);
+        $this->request = filter_var($request, FILTER_SANITIZE_STRING);
+        $query = "SELECT * FROM `pages` WHERE `title`='{$this->request}' LIMIT 1";
+        $rs = self::selectDB($query, array(1), "model\\PagesVO");
 
-        $stm = $this->conn->prepare("SELECT * FROM pages WHERE title=:title LIMIT 1");
-        $stm->bindParam(":title", $this->title);
-
-        try{
-            $stm->execute();
-        } catch(PDOException $e){
-            return die(
-                "Falha ao executar Query. \nErro Codigo: {$e->getCode()}:
-                {$e->getMessage()}\n{$e->getTraceAsString()}\n"
-            );
+        if($rs === false){
+            http_response_code(404);
+            die(include __DIR__ . "/.."."/view"."/404.html");
+        }else{
+            return $rs;
         }
-
-        $page = $stm->fetch(PDO::FETCH_ASSOC);
-        // $page = $stm->fetchAll();
-        $conn = null;
-
-        if ($page['title'] !== null) {
-            return $page;
-        }else {
-            return $page = null;
-        }
-
     }
 
     public function gerarPagina()

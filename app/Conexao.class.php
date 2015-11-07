@@ -39,12 +39,12 @@ abstract class Conexao
      * Variaveis
      * @var [type]
      */
-    private static $sgdb = "mysql"; // @var String Banco de dados
-    private static $host = "172.17.0.6"; // @var String endereco do host
-    private static $port = "3306"; // @var String porta de escuta do SGDB
-    private static $user = "thiago"; // @var String userID do DB
-    private static $pass = "roshi1903"; // @var String senha do DB
-    private static $db   = "php-foundation";   // @var String DB usado
+    private static $sgdb = "mysql";           // @var String Banco de dados
+    private static $host = "172.17.0.2";      // @var String endereco do host
+    private static $port = "3306";            // @var String porta de escuta do SGDB
+    private static $user = "thiago";          // @var String userID do DB
+    private static $pass = "roshi1903";       // @var String senha do DB
+    private static $db   = "php-foundation";  // @var String DB usado
 
     /**
      * Definindo Getters
@@ -99,20 +99,22 @@ abstract class Conexao
  * @param  String $class => Classe para ser usada - se não declada = NULL
  * @return VO-Array      => Resultado da query em VO ou Array
  */
-    // public function selectDB($sql, $params = null, $class = null)
-    public function selectDB($sql, $params = null)
+    public function selectDB($sql, $params = null, $class = null)
     {
         $conexao = $this->connect();
         $query   = $conexao->prepare($sql);
         $query->execute($params);
 
-         if(isset($class)){
-             $result = $query->fetchAll(PDO::FETCH_CLASS, $class) or die(print_r($query->errorInfo(), true));
-         }else {
-             $result = $query->fetchAll(PDO::FETCH_OBJ)           or die(print_r($query->errorInfo(), true));
-         }
-        //$result = $query->fetchAll(PDO::FETCH_ASSOC) or die(print_r($query->errorInfo(), true));
+        if ($query->rowCount() < 1) {
+            return false;
+        } else {
+            if(isset($class)){
+                $result = $query->fetchAll(PDO::FETCH_CLASS, $class) or die(print_r($query->errorInfo(), true));
+            }else {
+                $result = $query->fetchAll(PDO::FETCH_OBJ)           or die(print_r($query->errorInfo(), true));
+            }
 
+        }
         self::__destruction();
         return $result;
     }
