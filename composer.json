@@ -14,12 +14,17 @@
     },
     "prefer-stable": true,
     "autoload": {
-        "classmap": ["app/"],
+        "classmap": [
+            "app/",
+            "model/"
+        ],
         "psr-4": {
-            "app\\": "app/"
+            "app\\"  : "app/",
+            "model\\": "model/"
         },
         "psr-0":{
-            "app": "app/"
+            "app"  : "app/",
+            "model": "model/"
         }
     },
     "require": {
