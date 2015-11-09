@@ -3,8 +3,9 @@
 
 # TEAM
 
-    <name> -- <role> -- <twitter>
-    Thiago Souza -- FullStack -- @thiagoroshi
+    Name:Thiago Souza 
+    Role: FullStack 
+    UserName: @thiagoroshi <thiagoroshi EveryWhere>
 
 # THANKS
 
@@ -12,7 +13,12 @@
 
 # TECHNOLOGY COLOPHON
 
+    > Developed In
     HTML5, CSS3
     jQuery, Modernizr
     Twitter BootStrap,
-    Nginx, PHP-FPM
+    Twig, PHP5,
+    > Server Side
+    Nginx, PHP-FPM,
+    Docker, MySql
+    
