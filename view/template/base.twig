@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+    <title>{% block title %}{% endblock %} - WebPage</title>
     <meta charset ="utf-8">
-    <title>CodeEducation PhpFoundation01</title>
     <meta content="@thiagoroshi" name="author">
+    <link rel="author" href="humans.txt">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/view/css/bootstrap.min.css"/>
+    {% block head %}
+    {% endblock %}
     <style>
-    body{padding-top: 60px;};
+        body{padding-top: 60px;};
     </style>
     <link rel="shortcut icon" href="./favicon.ico">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -21,7 +25,7 @@
     <![endif]-->
 </head>
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <nav class="navbar navbar-default navbar-fixed-top">
         <!-- <div class="container container-fluid"> -->
         <div class="container-fluid">
             <div class="navbar-header">
@@ -37,11 +41,13 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div id="navbar" class="collapse navbar-collapse">
                 <ul class='nav navbar-nav'>
-                    <li><a href="home">home</a></li>
-                    <li><a href="empresa">Empresa</a></li>
-                    <li><a href="produtos">Produtos</a></li>
-                    <li><a href="servicos">Serviços</a></li>
-                    <li><a href="contato">contato</a></li>
+                    {% block navbar %}
+                        <li><a href="home">home</a></li>
+                        <li><a href="empresa">Empresa</a></li>
+                        <li><a href="produtos">Produtos</a></li>
+                        <li><a href="servicos">Serviços</a></li>
+                        <li><a href="contato">contato</a></li>
+                    {% endblock %}
                 </ul>
                 <form class="navbar-form navbar-right" role="search">
                     <div class="form-group">
@@ -53,3 +59,18 @@
         </div>
     </nav>
     <div class="container article">
+        {% block content %}
+        {% endblock %}
+    </div><!-- /container -->
+    <div class="navbar-inverse navbar-inner navbar-fixed-bottom">
+        <footer class="panel-footer">
+            <div class="container-fluid">
+                {% block footer %}
+                {% endblock %}
+            </div>
+        </footer>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script type="text/javascript" src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js'></script>
+</body>
+</html>

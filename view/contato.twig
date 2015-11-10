@@ -1,0 +1,30 @@
+{% extends "template/base.twig" %}
+
+{% block head %}
+{% endblock %}
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block content %}
+  <h1>{{ title }}</h1>
+  <p>
+    {{ content }}
+  </p>
+  
+  {% imports "template/forms.twig" as forms %}
+    <form class='form' method='post' action=''>
+      {{ forms.input('nome',      'text',   "input-xlarge") }}
+      {{ forms.input('email',     'email',  "input-xlarge") }}
+      {{ forms.input('descricao', 'text',   "input-xlarge") }}
+      {{ forms.input('enviar',    'submit', 'btn btn-block', 'enviar') }}
+    </form>
+{% endblock %}
+
+{% block footer %}
+  <div class='row pull-right'>
+    <span class='color'>
+      Todos os Direitos reservados - {{ "now"|date('Y') }}
+    </span>
+  </div>
+{% endblock %}
