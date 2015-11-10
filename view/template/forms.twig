@@ -2,21 +2,20 @@
 {# ##########################
    template macro para formularios
     : exemplo :
-    {# template #}
+    # template #
     {% import 'forms.twig' as forms %}
     {{ forms.input('username') }}
     {{ forms.input('password', 'password', none) }}
     
 ########################## #} 
-{% macro input(name, type, class, value, size) %}
+{% macro input(name, type, class, value) %}
     <label>
         {{ name }}
     </label>
     <input 
         name="{{ name }}" 
-        class="{{ class }}" 
+        class="{{ class|default('input-large') }}" 
         type="{{ type|default('text') }}"
         value="{{ value|default('') }}"
-        size="{{ size|default(20) }}"
     />
 {% endmacro %}
