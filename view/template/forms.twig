@@ -8,12 +8,13 @@
     {{ forms.input('password', 'password', none) }}
     
 ########################## #} 
-{% macro input(name, type, value, size) %}
+{% macro input(name, type, class, value, size) %}
     <label>
         {{ name }}
     </label>
     <input 
         name="{{ name }}" 
+        class="{{ class }}" 
         type="{{ type|default('text') }}"
         value="{{ value|default('') }}"
         size="{{ size|default(20) }}"
