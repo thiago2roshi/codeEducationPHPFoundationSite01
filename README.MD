@@ -1,6 +1,8 @@
-# Site para o projeto 1 do PHP Foundation da Code Education
+# Site para o projeto do PHP Foundation 
+_curso_: Code Education ![travis_status](https://travis-ci.org/thiago2roshi/codeEducation_PHP-Foundation.svg?branch=fase03)
+
 site desenvolvido em PHP usando Bootstrap, Twig, Composer
-com navegação via _http _GET_ e tratamento de erros com uma 404 personalizada.
+com navegação via _http GET_ e tratamento de erros com uma 404 personalizada.
 
 ### Dependencias
 
