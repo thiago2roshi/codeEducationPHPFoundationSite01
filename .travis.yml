@@ -11,6 +11,6 @@ before_script:
   - composer install --prefer-source --no-interaction
   - sh -C "if[ '$DB' = 'mysql' ]; then mysql -e 'CREATE DATABASE `php-foundation`;'; fi"
   - sh -C "if[ '$DB' = 'mysql' ]; then mysql -e 'CREATE TABLE `php-foundation`.`pages`(`id` int not null auto_increment, `title` varchar(50), `content` text, `type` varchar(20), primary key (id));'; fi"
-  - sh -C "if[ '$DB' = 'mysql' ]; then mysql -e 'INSERT into `php-foundation`.`pages`(`title`, `content`, `type`) VALUES ("titulo", "conteudo curto", "estatico")'; fi"
+  - sh -C "if[ '$DB' = 'mysql' ]; then mysql -e 'INSERT into `php-foundation`.`pages`(`title`, `content`, `type`) VALUES ('titulo', 'conteudo curto', 'estatico')'; fi"
 script:
   phpunit --configuration="phpunit.xml" --include-path="."
