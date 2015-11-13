@@ -14,7 +14,7 @@ mysql: &mysql
 before_script:
   - composer self-update
   - composer install --prefer-source --no-interaction
-  - mysql -e 'CREATE SCHEMA php-foundation;'
+  - mysql -e 'CREATE SCHEMA `php-foundation`;'
   - mysql -e 'grant all privileges on *.* to 'travis'@'localhost' with grant option;' -uroot
   - mysql -e 'CREATE TABLE `php-foundation`.`pages`(`id` int not null auto_increment, `title` varchar(50), `content` text, `type` varchar(20), primary key (id));'
   - mysql -e 'INSERT into `php-foundation`.`pages`(`title`, `content`, `type`) VALUES ("titulo", 'conteudo curto', 'estatico');'
