@@ -40,7 +40,7 @@ abstract class Conexao
      * @var [type]
      */
     private static $sgdb = "mysql";           // @var String Banco de dados
-    private static $host = "172.17.0.2";      // @var String endereco do host
+    private static $host = "localhost";      // @var String endereco do host
     private static $port = "3306";            // @var String porta de escuta do SGDB
     private static $user = "thiago";          // @var String userID do DB
     private static $pass = "roshi1903";       // @var String senha do DB
