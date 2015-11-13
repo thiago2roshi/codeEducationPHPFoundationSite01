@@ -6,7 +6,7 @@ use \app\Pages as Pages;
 class PHPNativeElementsTest extends PHPUnit
 {
 
-    protect $Pages;
+    protected $Pages;
 
     public function setUp()
     {
